@@ -73,7 +73,7 @@ class Config:
         users_to_add = user_set - self.state.users
         for user in users_to_add:
             tags = etc.get(PREFIX + '/tags/' + user, '')
-            log.info("Creating user %s:%s with tags" % (user, users[user], tags))
+            log.info("Creating user %s:%s with tags %s" % (user, users[user], tags))
             try:
                 self.client.create_user(user, users[user], tags)
                 self.state.users.add(user)
