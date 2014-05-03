@@ -107,7 +107,7 @@ if __name__ == '__main__':
     client = etcd.Client(host=host_ip, port=4001)
     config = Config()
 
-    client.set(PREFIX + '/service', json.dumps({'host': host_ip, 'post': 5672}))
+    client.set(PREFIX + '/service', json.dumps({'host': host_ip, 'port': 5672}))
 
     while True:
         try:
