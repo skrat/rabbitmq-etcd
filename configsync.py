@@ -4,6 +4,7 @@ from __future__ import print_function
 import os
 import sys
 import etcd
+import json
 import time
 import base64
 import pyrabbit.api
@@ -106,7 +107,7 @@ if __name__ == '__main__':
     client = etcd.Client(host=host_ip, port=4001)
     config = Config()
 
-    client.set(PREFIX + '/location', "amqp://%s:5672" % host_ip)
+    client.set(PREFIX + '/service', json.dumps({'host': host_ip, 'post': 5672}))
 
     while True:
         try:
