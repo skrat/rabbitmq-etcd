@@ -2,6 +2,8 @@
 Description=RabbitMQ server
 After=docker.service
 Requires=docker.service
+After=etcd.service
+Requires=etcd.service
 
 [Service]
 ExecStartPre=/bin/sh -c "/usr/bin/docker rm -f rabbitmq > /dev/null ; true"
