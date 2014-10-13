@@ -3,7 +3,7 @@ MAINTAINER Dusan <dusan@floorplanner.com>
 
 # Runs whole system upgrade and install packages
 RUN pacman -Syu --noconfirm
-RUN pacman -S --noconfirm base-devel binutils curl python2 python2-pip
+RUN pacman -S --noconfirm base-devel binutils curl python2 python2-pip cronie
 
 # Builds & Installs RabbitMQ server package from AUR
 WORKDIR /tmp
@@ -28,6 +28,9 @@ ADD configsync.py /configsync.py
 RUN chmod 755 /configsync.py
 ADD run.sh /run.sh
 RUN chmod 755 /run.sh
+ADD logrotate.cron /etc/cron.daily/logrotate
+RUN chmod 755 /etc/cron.daily/logrotate
+ADD rabbitmq.logrotate /etc/logrotate.d/rabbitmq
 
 # RabbitMQ ports
 EXPOSE 5672 15672

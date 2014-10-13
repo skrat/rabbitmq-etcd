@@ -26,5 +26,8 @@ echo "=> Redirecting log file $logfile to stdout"
     done
 ) &
 
+echo "=> Starting crond"
+/usr/bin/crond
+
 echo "=> Starting configsync.py in the background"
 /configsync.py & fg %1 > /dev/null
